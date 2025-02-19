@@ -62,9 +62,9 @@ var youngestCustomer  = (array) => {
 
 var averageBalance = (array) => {
     let sum = _.reduce(array,function(acc, curr){
-        let reg = /\W/
-        let amt = curr.balance.replace(reg, '')
-        acc += amt
+        let amount = curr.balance
+        let newAmount = amount.replace(/[$,]/g, "")
+        acc += Number(newAmount)
         return acc
     }, 0)
     return sum / array.length
