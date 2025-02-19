@@ -70,7 +70,17 @@ var averageBalance = (array) => {
     return sum / array.length
 };
 
-var firstLetterCount;
+var firstLetterCount = (arr, letter) => {
+    let firstLet = arr.reduce((acc, curr) => {
+        let newArr = [];
+        newArr.push(curr.name.charAt(0))
+        if(newArr.includes(letter.toUpperCase())){
+            acc++
+        }
+        return acc
+    }, 0)
+    return firstLet
+};
 
 var friendFirstLetterCount;
 
