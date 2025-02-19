@@ -16,22 +16,59 @@ var _ = require('underbar');
  *
  * 4. To test your work, run the following command in your terminal:
  *
- *    npm start --prefix ./let-s-get-functional.github.io/projects/let-s-get-functional
+ *    npm start --prefix ./let-s-get-functional.github.io-2/projects/let-s-get-functional
  *
  *    IMPORTANT: Make sure you replace <YOUR_GITHUB_FOLDER with your actual github folder name that is in your workspace.
  */
 
-var maleCount = function(array) {
 
+var maleCount = (array) => {
+    var males = _.filter(array, function(customer){
+        return customer.gender === 'male'
+    });
+    return males.length
+}
+
+var femaleCount = (array) => {
+    var females = _.reduce(array, function(accumulator, current){
+        if(current.gender === 'female'){
+            accumulator += 1
+        }
+        return accumulator
+    }, 0)
+    return females
 };
 
-var femaleCount;
+var oldestCustomer = (array) => {
+    let oldest = _.reduce(array, function(accumulator, person){
+        if(person.age > accumulator.age){
+            accumulator = person.name
+        }
+        return accumulator
+    })
+    return oldest
+};
 
-var oldestCustomer;
+var youngestCustomer  = (array) => {
+    let youngest = _.reduce(array, function(accumulator, person){
+        if(person.age < accumulator.age){
+            accumulator = person
+        }
+        return accumulator
+    })
+    return youngest.name
+};
+;
 
-var youngestCustomer;
-
-var averageBalance;
+var averageBalance = (array) => {
+    let sum = _.reduce(array,function(acc, curr){
+        let reg = /\W/
+        let amt = curr.balance.replace(reg, '')
+        acc += amt
+        return acc
+    }, 0)
+    return sum / array.length
+};
 
 var firstLetterCount;
 
