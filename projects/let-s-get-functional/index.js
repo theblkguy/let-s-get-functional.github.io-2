@@ -82,9 +82,31 @@ var firstLetterCount = (arr, letter) => {
     return firstLet
 };
 
-var friendFirstLetterCount;
+var friendFirstLetterCount = (arr, cust, lett) => {
+    let newArr = [];
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i].name === cust){
+            for(var j = 0; j < arr[i].friends.length; j++){
+                newArr.push(arr[i].friends[j].name.charAt(0))
+            }
+        }
+    }
+    return newArr.reduce((acc, curr) => {
+        if(curr === lett.toUpperCase()){
+            acc++
+        }
+        return acc
+    }, 0)
+}
 
-var friendsCount;
+var friendsCount = function(array, name){
+    const filtered = array.filter(function(customer){
+        return customer.friends.map(function(friend){
+            return friend.name === name
+        })
+    })
+    console.log(filtered)
+};
 
 var topThreeTags;
 
