@@ -100,15 +100,38 @@ var friendFirstLetterCount = (arr, cust, lett) => {
 }
 
 var friendsCount = function(array, name){
-    const filtered = array.filter(function(customer){
-        return customer.friends.map(function(friend){
-            return friend.name === name
-        })
+    const filtered = array.filter(function(customer){//At each customer
+        return customer.friends.filter(function(friend){ //filter the friends list of each customer for this friend
+            return friend.name === name //return the friend if the given name matches one in their friends list
+        }).length // return length to make sure vlaue is truthy
     })
-    console.log(filtered)
+return filtered.map((customer) => {
+    return customer.name
+})
 };
 
-var topThreeTags;
+var topThreeTags = (arr) => {
+    let tagArr = [];
+    for(var i = 0; i < arr.length; i++){
+        for(var j = 0; j < arr[i].tags.length; j++){
+            tagArr.push(arr[i].tags[j])
+        }
+        }
+        let top3 = tagArr.reduce((acc, curr) =>{
+            if(acc.hasOwnProperty(curr)){
+                acc[curr] += 1
+            } else {
+                acc[curr] = 1
+            }
+            return acc
+        }, {})
+        let topArr = Object.entries(top3).sort(([,a], [,b]) => b - a).slice(0, 3).map((names) => {
+            return names[0]
+        })
+        return topArr
+    }
+
+
 
 var genderCount;
 
