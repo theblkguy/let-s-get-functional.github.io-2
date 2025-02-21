@@ -133,7 +133,21 @@ var topThreeTags = (arr) => {
 
 
 
-var genderCount;
+var genderCount = (arr) => {
+    let genderArr = [];
+    for(var i = 0; i < arr.length; i++){
+        genderArr.push(arr[i].gender);
+    }
+    let genderObj = genderArr.reduce((acc, curr) => {
+        if(acc.hasOwnProperty(curr)){
+            acc[curr] += 1;
+        } else {
+            acc[curr] = 1;
+        }
+        return acc;
+    }, {})
+    return genderObj
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
